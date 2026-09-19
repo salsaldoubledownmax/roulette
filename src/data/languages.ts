@@ -15,6 +15,7 @@ export const Translations = {
     BubblePop: 'BubblePop',
     'Pot of greed': 'Pot of greed',
     'Yoru ni Kakeru': 'Into The Night (by item4)',
+    'Clock Tower': 'Clock Tower',
     'Shake!': 'Shake!',
     'Input names separated by commas or line feed here': 'Input names separated by commas or line feed here',
     'This program is freeware and may be used freely anywhere, including in broadcasts and videos.':
@@ -38,6 +39,7 @@ export const Translations = {
     BubblePop: '버블팝',
     'Pot of greed': '욕망의 항아리',
     'Yoru ni Kakeru': '밤을 달리다 (by item4)',
+    'Clock Tower': '시계탑',
     'Shake!': '흔들기!',
     'Input names separated by commas or line feed here': '이름들을 쉼표나 엔터로 구분해서 넣어주세요',
     'This program is freeware and may be used freely anywhere, including in broadcasts and videos.':

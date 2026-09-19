@@ -1,0 +1,8 @@
+{
+  "name": "Marble Roulette",
+  "description": "구슬을 굴려 당첨자를 뽑는 룰렛 추첨기 (Marble roulette lottery drawing game)",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

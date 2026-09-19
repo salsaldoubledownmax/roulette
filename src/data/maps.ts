@@ -2997,4 +2997,470 @@ export const stages: StageDef[] = [
       },
     ],
   },
+  {
+    title: 'Clock Tower',
+    goalY: 125,
+    zoomY: 119,
+    adBoards: [{ x: 13, y: 118, w: 5, h: 1.25 }],
+    entities: [
+      // Left Outer Tower Wall
+      {
+        position: { x: 0, y: 0 },
+        type: 'static',
+        shape: {
+          type: 'polyline',
+          rotation: 0,
+          color: '#8c7853',
+          points: [
+            [9.2, -100],
+            [9.2, 5],
+            [4.0, 14],
+            [4.0, 115],
+            [12.0, 121],
+            [12.0, 130],
+          ],
+        },
+        props: { density: 1, angularVelocity: 0, restitution: 0.1 },
+      },
+      // Right Outer Tower Wall
+      {
+        position: { x: 0, y: 0 },
+        type: 'static',
+        shape: {
+          type: 'polyline',
+          rotation: 0,
+          color: '#8c7853',
+          points: [
+            [16.8, -100],
+            [16.8, 5],
+            [22.0, 14],
+            [22.0, 115],
+            [14.0, 121],
+            [14.0, 130],
+          ],
+        },
+        props: { density: 1, angularVelocity: 0, restitution: 0.1 },
+      },
+
+      // Section 1: Spire Divider & Entry Cogs (y: 8 - 22)
+      {
+        position: { x: 13, y: 10 },
+        type: 'static',
+        shape: { type: 'box', width: 1.4, height: 1.4, rotation: 0.785, color: '#c5a059' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+      // Left Entry Cog
+      {
+        position: { x: 8.5, y: 17 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 2.6, height: 0.2, rotation: 0, color: '#d4af37' },
+        props: { density: 1, angularVelocity: 3.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 8.5, y: 17 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 0.2, height: 2.6, rotation: 0, color: '#d4af37' },
+        props: { density: 1, angularVelocity: 3.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 8.5, y: 17 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.4, color: '#8c7853' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+      // Right Entry Cog
+      {
+        position: { x: 17.5, y: 17 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 2.6, height: 0.2, rotation: 0, color: '#d4af37' },
+        props: { density: 1, angularVelocity: -3.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 17.5, y: 17 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 0.2, height: 2.6, rotation: 0, color: '#d4af37' },
+        props: { density: 1, angularVelocity: -3.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 17.5, y: 17 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.4, color: '#8c7853' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+      // Side deflectors
+      {
+        position: { x: 6.2, y: 22 },
+        type: 'static',
+        shape: { type: 'box', width: 2.5, height: 0.2, rotation: 0.45, color: '#a08050' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.1 },
+      },
+      {
+        position: { x: 19.8, y: 22 },
+        type: 'static',
+        shape: { type: 'box', width: 2.5, height: 0.2, rotation: -0.45, color: '#a08050' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.1 },
+      },
+
+      // Section 2: The Great Clock Face (y: 26 - 46)
+      // 12 Clock Hour Marker Pins (around center 13, 36 at radius 6.8)
+      {
+        position: { x: 16.4, y: 30.1 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 18.89, y: 32.6 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 19.8, y: 36.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 18.89, y: 39.4 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 16.4, y: 41.9 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 13.0, y: 42.8 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 9.6, y: 41.9 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 7.11, y: 39.4 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 6.2, y: 36.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 7.11, y: 32.6 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 9.6, y: 30.1 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      {
+        position: { x: 13.0, y: 29.2 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.25, color: '#ffd700' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.4 },
+      },
+      // Minute Hand (Longer, spinning at 1.8 rad/s)
+      {
+        position: { x: 13.0, y: 36.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 5.2, height: 0.22, rotation: 0, color: '#3d2e1e' },
+        props: { density: 1, angularVelocity: 1.8, restitution: 0.2 },
+      },
+      // Hour Hand (Shorter, spinning at -0.9 rad/s)
+      {
+        position: { x: 13.0, y: 36.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.6, height: 0.35, rotation: 1.2, color: '#59432d' },
+        props: { density: 1, angularVelocity: -0.9, restitution: 0.2 },
+      },
+      // Clock Center Pivot
+      {
+        position: { x: 13.0, y: 36.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.55, color: '#d4af37' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+      // Escapement chutes below clock face
+      {
+        position: { x: 10.2, y: 45.0 },
+        type: 'static',
+        shape: { type: 'box', width: 2.0, height: 0.2, rotation: -0.3, color: '#8c7853' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.1 },
+      },
+      {
+        position: { x: 15.8, y: 45.0 },
+        type: 'static',
+        shape: { type: 'box', width: 2.0, height: 0.2, rotation: 0.3, color: '#8c7853' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.1 },
+      },
+
+      // Section 3: The Mechanical Gear Chamber (y: 48 - 74)
+      // Gear A (Left, Bronze 3-bar cog at 8.0, 53.0)
+      {
+        position: { x: 8.0, y: 53.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.6, height: 0.2, rotation: 0, color: '#cd7f32' },
+        props: { density: 1, angularVelocity: 3.2, restitution: 0.1 },
+      },
+      {
+        position: { x: 8.0, y: 53.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.6, height: 0.2, rotation: 1.05, color: '#cd7f32' },
+        props: { density: 1, angularVelocity: 3.2, restitution: 0.1 },
+      },
+      {
+        position: { x: 8.0, y: 53.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.6, height: 0.2, rotation: 2.09, color: '#cd7f32' },
+        props: { density: 1, angularVelocity: 3.2, restitution: 0.1 },
+      },
+      {
+        position: { x: 8.0, y: 53.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.45, color: '#8c7853' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+      // Gear B (Right, Brass 3-bar cog at 18.0, 53.0)
+      {
+        position: { x: 18.0, y: 53.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.6, height: 0.2, rotation: 0, color: '#c5a059' },
+        props: { density: 1, angularVelocity: -3.2, restitution: 0.1 },
+      },
+      {
+        position: { x: 18.0, y: 53.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.6, height: 0.2, rotation: 1.05, color: '#c5a059' },
+        props: { density: 1, angularVelocity: -3.2, restitution: 0.1 },
+      },
+      {
+        position: { x: 18.0, y: 53.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.6, height: 0.2, rotation: 2.09, color: '#c5a059' },
+        props: { density: 1, angularVelocity: -3.2, restitution: 0.1 },
+      },
+      {
+        position: { x: 18.0, y: 53.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.45, color: '#8c7853' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+
+      // Central Escapement Wheel (Center, 13.0, 62.0)
+      {
+        position: { x: 13.0, y: 62.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 4.0, height: 0.22, rotation: 0, color: '#d4af37' },
+        props: { density: 1, angularVelocity: 2.8, restitution: 0.1 },
+      },
+      {
+        position: { x: 13.0, y: 62.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 4.0, height: 0.22, rotation: 0.785, color: '#d4af37' },
+        props: { density: 1, angularVelocity: 2.8, restitution: 0.1 },
+      },
+      {
+        position: { x: 13.0, y: 62.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 4.0, height: 0.22, rotation: 1.57, color: '#d4af37' },
+        props: { density: 1, angularVelocity: 2.8, restitution: 0.1 },
+      },
+      {
+        position: { x: 13.0, y: 62.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 4.0, height: 0.22, rotation: 2.356, color: '#d4af37' },
+        props: { density: 1, angularVelocity: 2.8, restitution: 0.1 },
+      },
+      {
+        position: { x: 13.0, y: 62.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.5, color: '#8c7853' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+
+      // Lower Pair of Cogs at y: 71.0
+      {
+        position: { x: 8.0, y: 71.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.4, height: 0.2, rotation: 0, color: '#b87333' },
+        props: { density: 1, angularVelocity: -3.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 8.0, y: 71.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.4, height: 0.2, rotation: 1.05, color: '#b87333' },
+        props: { density: 1, angularVelocity: -3.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 8.0, y: 71.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.4, height: 0.2, rotation: 2.09, color: '#b87333' },
+        props: { density: 1, angularVelocity: -3.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 18.0, y: 71.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.4, height: 0.2, rotation: 0, color: '#b87333' },
+        props: { density: 1, angularVelocity: 3.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 18.0, y: 71.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.4, height: 0.2, rotation: 1.05, color: '#b87333' },
+        props: { density: 1, angularVelocity: 3.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 18.0, y: 71.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.4, height: 0.2, rotation: 2.09, color: '#b87333' },
+        props: { density: 1, angularVelocity: 3.0, restitution: 0.1 },
+      },
+
+      // Section 4: Grand Pendulums & Chime Field (y: 76 - 98)
+      // Left Swinging Pendulum
+      {
+        position: { x: 8.5, y: 82.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 4.2, height: 0.22, rotation: 0, color: '#8c7853' },
+        props: { density: 1, angularVelocity: 2.4, restitution: 0.2 },
+      },
+      // Right Swinging Pendulum
+      {
+        position: { x: 17.5, y: 85.0 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 4.2, height: 0.22, rotation: 0, color: '#8c7853' },
+        props: { density: 1, angularVelocity: -2.4, restitution: 0.2 },
+      },
+
+      // Musical Chime Pin Matrix (staggered bouncy brass pegs)
+      // Row 1 (y: 78)
+      {
+        position: { x: 11.5, y: 78.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      {
+        position: { x: 13.0, y: 78.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      {
+        position: { x: 14.5, y: 78.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      // Row 2 (y: 82)
+      {
+        position: { x: 11.5, y: 82.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      {
+        position: { x: 14.5, y: 82.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      // Row 3 (y: 88)
+      {
+        position: { x: 10.0, y: 88.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      {
+        position: { x: 13.0, y: 88.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      {
+        position: { x: 16.0, y: 88.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      // Row 4 (y: 93)
+      {
+        position: { x: 8.5, y: 93.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      {
+        position: { x: 11.5, y: 93.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      {
+        position: { x: 14.5, y: 93.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+      {
+        position: { x: 17.5, y: 93.0 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.22, color: '#e6c66e' },
+        props: { density: 1, angularVelocity: 0, restitution: 1.25 },
+      },
+
+      // Section 5: The Great Tower Bell & Final Funnel (y: 100 - 125)
+      // Bell Chamber Wedge at (13.0, 103.0)
+      {
+        position: { x: 13.0, y: 103.0 },
+        type: 'static',
+        shape: { type: 'box', width: 2.0, height: 2.0, rotation: 0.785, color: '#c5a059' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.3 },
+      },
+      // Funnel Inflow Guides
+      {
+        position: { x: 7.5, y: 112.0 },
+        type: 'static',
+        shape: { type: 'box', width: 3.5, height: 0.2, rotation: 0.55, color: '#a08050' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.1 },
+      },
+      {
+        position: { x: 18.5, y: 112.0 },
+        type: 'static',
+        shape: { type: 'box', width: 3.5, height: 0.2, rotation: -0.55, color: '#a08050' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.1 },
+      },
+      // Final Fast Balance Wheel above the goal
+      {
+        position: { x: 13.0, y: 113.5 },
+        type: 'kinematic',
+        shape: { type: 'box', width: 3.4, height: 0.2, rotation: 0, color: '#d4af37' },
+        props: { density: 1, angularVelocity: 4.0, restitution: 0.1 },
+      },
+      {
+        position: { x: 13.0, y: 113.5 },
+        type: 'static',
+        shape: { type: 'circle', radius: 0.45, color: '#8c7853' },
+        props: { density: 1, angularVelocity: 0, restitution: 0.2 },
+      },
+    ],
+  },
 ];
+

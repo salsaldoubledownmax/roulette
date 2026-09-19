@@ -133,12 +133,11 @@ export class Marble {
     const viewPortTop = viewPort.y - viewPortHh;
     const viewPortBottom = viewPort.y + viewPortHh;
     const halfSize = this.size / 2;
-    const isOutsideView = (
+    const isOutsideView =
       this.x + halfSize < viewPortLeft ||
       this.x - halfSize > viewPortRight ||
       this.y + halfSize < viewPortTop ||
-      this.y - halfSize > viewPortBottom
-    );
+      this.y - halfSize > viewPortBottom;
     if (!isMinimap && isOutsideView) {
       return;
     }
@@ -173,7 +172,18 @@ export class Marble {
       transformGuard(ctx, () => {
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(0, 0, hs, 0, Math.PI * 2);
+        ctx.clip();
         ctx.drawImage(skin, -hs, -hs, hs * 2, hs * 2);
+        ctx.restore();
+
+        ctx.beginPath();
+        ctx.arc(0, 0, hs, 0, Math.PI * 2);
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = Math.max(0.03, 1.2 / zoom);
+        ctx.stroke();
       });
     } else {
       this._drawMarbleBody(ctx, false);

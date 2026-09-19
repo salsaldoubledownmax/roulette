@@ -58,6 +58,7 @@ export class RouletteRenderer {
   public sizeFactor = 1;
 
   protected _images: { [key: string]: HTMLImageElement } = {};
+  protected _animalImages: HTMLImageElement[] = [];
   protected _theme: ColorTheme = Themes.dark;
   private _ad: RoundAd | null = null;
   private _adImageCache: Map<string, HTMLImageElement> = new Map();
@@ -156,6 +157,41 @@ export class RouletteRenderer {
       })();
     });
 
+    const animalDefs = [
+      {
+        names: ['고양이', 'cat', '냥이', '야옹이', '고양이*2', '고양이*1'],
+        url: new URL('../assets/images/cat_marble.jpg', import.meta.url),
+      },
+      {
+        names: ['강아지', 'dog', '개', '댕댕이', '멍멍이', '강아지*2', '강아지*1'],
+        url: new URL('../assets/images/dog_marble.jpg', import.meta.url),
+      },
+      {
+        names: ['토끼', 'rabbit', 'bunny', '토순이', '토끼*2', '토끼*1'],
+        url: new URL('../assets/images/rabbit_marble.jpg', import.meta.url),
+      },
+      {
+        names: ['판다', 'panda', '팬더', '바오', '판다*2', '판다*1'],
+        url: new URL('../assets/images/panda_marble.jpg', import.meta.url),
+      },
+      {
+        names: ['여우', 'fox', '붉은여우', '여우*2', '여우*1'],
+        url: new URL('../assets/images/fox_marble.jpg', import.meta.url),
+      },
+    ];
+
+    animalDefs.forEach(({ names, url }) => {
+      loadPromises.push(
+        (async () => {
+          const img = await this._loadImage(url.toString());
+          this._animalImages.push(img);
+          names.forEach((alias) => {
+            this._images[alias] = img;
+          });
+        })()
+      );
+    });
+
     loadPromises.push(
       (async () => {
         await this._loadImage(new URL('../assets/images/ff.svg', import.meta.url).toString());
@@ -165,13 +201,49 @@ export class RouletteRenderer {
     await Promise.all(loadPromises);
   }
 
-  private getMarbleImage(name: string): CanvasImageSource | undefined {
-    // Priority 1: Hardcoded images
+  private getMarbleImage(name: string, id?: number): CanvasImageSource | undefined {
+    // Priority 1: Direct match in _images
     if (this._images[name]) {
       return this._images[name];
     }
+
+    // Match name substrings / keywords
+    const lowerName = name.toLowerCase();
+    if (name.includes('고양이') || lowerName.includes('cat') || name.includes('냥')) {
+      if (this._images['고양이']) return this._images['고양이'];
+    }
+    if (name.includes('강아지') || lowerName.includes('dog') || name.includes('댕댕') || name.includes('개')) {
+      if (this._images['강아지']) return this._images['강아지'];
+    }
+    if (name.includes('토끼') || lowerName.includes('rabbit') || lowerName.includes('bunny')) {
+      if (this._images['토끼']) return this._images['토끼'];
+    }
+    if (name.includes('판다') || lowerName.includes('panda') || name.includes('팬더')) {
+      if (this._images['판다']) return this._images['판다'];
+    }
+    if (name.includes('여우') || lowerName.includes('fox')) {
+      if (this._images['여우']) return this._images['여우'];
+    }
+
     // Priority 2: Keyword sprites from API
-    return this._keywordService.getSprite(name);
+    const sprite = this._keywordService.getSprite(name);
+    if (sprite) {
+      return sprite;
+    }
+
+    // Priority 3: Fallback animal marble skin for all marbles
+    if (this._animalImages.length > 0) {
+      let seed = id ?? 0;
+      if (seed === 0) {
+        for (let i = 0; i < name.length; i++) {
+          seed = (seed * 31 + name.charCodeAt(i)) | 0;
+        }
+      }
+      const idx = Math.abs(seed) % this._animalImages.length;
+      return this._animalImages[idx];
+    }
+
+    return undefined;
   }
 
   protected onBeforeEntities(): void {}
@@ -367,7 +439,7 @@ export class RouletteRenderer {
         camera.zoom * initialZoom,
         i >= firstIndex && i <= lastIndex,
         false,
-        this.getMarbleImage(marble.name),
+        this.getMarbleImage(marble.name, marble.id),
         viewPort,
         this._theme
       );
@@ -578,9 +650,13 @@ export class RouletteRenderer {
     const marbleSize = 100;
     const marbleCenterX = this._sceneCanvas.width - marbleSize / 2 - 20;
     const marbleCenterY = this._sceneCanvas.height - winnerAreaHeight / 2;
-    const marbleImage = this.getMarbleImage(winner.name);
+    const marbleImage = this.getMarbleImage(winner.name, winner.id);
 
     if (marbleImage) {
+      this.ctx.save();
+      this.ctx.beginPath();
+      this.ctx.arc(marbleCenterX, marbleCenterY, marbleSize / 2, 0, Math.PI * 2);
+      this.ctx.clip();
       this.ctx.drawImage(
         marbleImage,
         marbleCenterX - marbleSize / 2,
@@ -588,6 +664,13 @@ export class RouletteRenderer {
         marbleSize,
         marbleSize
       );
+      this.ctx.restore();
+
+      this.ctx.beginPath();
+      this.ctx.arc(marbleCenterX, marbleCenterY, marbleSize / 2, 0, Math.PI * 2);
+      this.ctx.strokeStyle = `hsl(${winner.hue} 100% 70%)`;
+      this.ctx.lineWidth = 4;
+      this.ctx.stroke();
     } else {
       this.ctx.beginPath();
       this.ctx.arc(marbleCenterX, marbleCenterY, marbleSize / 2, 0, Math.PI * 2);
